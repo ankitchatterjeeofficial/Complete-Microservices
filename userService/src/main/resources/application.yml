@@ -1,0 +1,88 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: USER-SERVICE
+  datasource:
+    url: jdbc:mysql://localhost:3306/microservices
+    username: root
+    password: root
+    driver-class-name : com.mysql.cj.jdbc.Driver
+  config:
+    import:
+        configserver:http://localhost:8085
+
+
+
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  properties:
+    hibernate:
+      dialect: org.hibernate.dialect.MySQL8Dialect
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      ratingHotelBreaker:
+        failureRateThreshold : 10
+        slowCallRateThreshold : 25
+        slowCallDurationThreshold : 6000
+        permittedNumberOfCallsInHalfOpenState : 3
+        waitDurationInHalfOpenState : 5000
+        slidingWindowType : COUNT_BASED
+        slidingWindowSize : 10
+        minimumNumberOfCalls : 5
+        waitDurationInOpenState : 6000
+        automaticTransitionFromOpenToHalfOpenEnabled : true
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+
+  retry:
+    instances:
+      ratingHotelRetry:
+        max-attempts: 3
+        wait-duration: 5000
+
+  rateLimiter:
+    instances:
+      userRateLimiter:
+        limit-refresh-period: 4000
+        limit-for-period: 2
+        timeout-duration: 5000
+
+view:
+  results:
+    tree:
+      max_results: 0
+
+
+
+
+
+#eureka:
+#  instance:
+ #   prefer-ip-address: true
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+ #   service-url:
+ #     defaultZone: http://localhost:8761/eureka
+
+
+
