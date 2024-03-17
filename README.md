@@ -32,3 +32,4 @@ This project implements a microservices architecture for user, hotel, and rating
 - Resilience4j for implementing circuit breakers, enhancing system resilience
 - Pagination for improved web page viewing
 - Global exception handling for robust error management
+- Some Unit tests and integrated test cases using JUnit, JMeter, and Mockito for quality assurance.
