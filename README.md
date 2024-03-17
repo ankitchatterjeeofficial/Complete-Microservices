@@ -25,11 +25,12 @@ This project implements a microservices architecture for user, hotel, and rating
 
 ## Features
 
-- Microservices architecture for modularization and scalability
+- Microservices architecture for modularization and scalability.
+-Implementation of DAO design pattern for data access and management.
 - JPA/Hibernate for object-relational mapping
 - Netflix Eureka for microservice discovery and registration
 - Spring Security with OKTA for secure authentication and authorization
 - Resilience4j for implementing circuit breakers, enhancing system resilience
-- Pagination for improved web page viewing
+- Pagination and Sorting for User Friendly apporach for Faster and more responsive Web Pages.
 - Global exception handling for robust error management
 - Some Unit tests and integrated test cases using JUnit, JMeter, and Mockito for quality assurance.
